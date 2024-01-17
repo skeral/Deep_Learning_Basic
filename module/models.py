@@ -9,7 +9,9 @@ def get_model(name: str):
 
 class CustomModel(nn.Module):
     def __init__(self):
-        pass
+        super().__init__()
+        # define DL layer
     
     def forward(self, x):
-        pass
+        # using module that you define in __init__ and check whether it's right sequence
+        return x
