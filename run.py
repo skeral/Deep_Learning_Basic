@@ -4,8 +4,11 @@ from module.utils import Config
 from module.trainer import Trainer
 
 
-def run():
-    pass    
+def run(config: Config):
+    
+    trainer = Trainer(config=config)
+    trainer.setup()
+        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -16,9 +19,10 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--data_path", type=str, default="./data")
     parser.add_argument("--save_dir", type=str, default="./log")
+    parser.add_argument("--exp_name", type=str, default=None)
 
     args = parser.parse_args()
     
     config = Config(args)
     print(config)
-    # run()
+    run(config)
