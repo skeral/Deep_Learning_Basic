@@ -8,6 +8,9 @@ def run(config: Config):
     
     trainer = Trainer(config=config)
     trainer.setup()
+    
+    trainer.train()
+
         
 
 if __name__ == "__main__":

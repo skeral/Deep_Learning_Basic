@@ -1,9 +1,20 @@
 # Simple PyTorch Baseline for Training
 
 ## TODO
-- [ ] train
-- [ ] test
-- [ ] logging
+### utils
+- [ ] F1
+- [ ] Accuracy
+- [x] config
+- [x] config param save
+### log
+- [ ] csv logging
+### trainer
+- [ ] logging pesudo code
+- [ ] train pesudo code
+- [ ] validation pesudo code
+- [ ] model save
+- [ ] load model for continual learning
+### other 
 - [ ] Pytorch lightning
 
 
@@ -22,6 +33,10 @@ pip install -r requirements.txt
 
 1. clone the repository
 2. make virtual enviornmnet
-3. 
+3. make custom dataset
+4. make model
+5. make own your transformer 
+6. fill trainer setup
+7. fill the train, _valid function
 
 

@@ -50,4 +50,8 @@ def seed_everything(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
 
-        
+# F1 score
+# Accuracy
+
+if __name__ == "__main__":
+    pass
