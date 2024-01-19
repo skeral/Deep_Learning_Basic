@@ -1,8 +1,8 @@
 import torch.nn as nn
 
-def get_model(name: str):
+def get_model(name: str, **kwargs):
     if name == "custom":
-        return CustomModel()
+        return CustomModel(**kwargs)
     else:
         raise ValueError("Incorrect Name")
 

@@ -4,9 +4,9 @@ import numpy as np
 
 from torch.utils.data import Dataset
 
-def get_dataset(name: str):
+def get_dataset(name: str, **kwargs):
     if name == "custom":
-        return CustomDataset()
+        return CustomDataset(**kwargs)
     else:
         raise ValueError("Incorrect Name")
     

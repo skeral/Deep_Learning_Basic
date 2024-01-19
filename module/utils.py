@@ -41,7 +41,6 @@ class Config:
             json.dump(config, f, indent=4)
         
 
-
 def seed_everything(seed):
     random.seed(seed)
     np.random.seed(seed)
