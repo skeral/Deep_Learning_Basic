@@ -1,13 +1,13 @@
 from glob import glob
 
-
+from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 import albumentations as A
 from albumentations.pytorch.transforms import ToTensorV2
 import torch
 from torch.utils.data import DataLoader
 
-from module.dataset import get_dataset
+from base.module.datasets import get_dataset
 from module.models import get_model
 from module.utils import Config, seed_everything
 from module.log import get_logger
@@ -73,20 +73,57 @@ class Trainer:
 
             # Model
             self.model = get_model("custom")
+            
+            # load model
+            
+            # Loss function
+            self.loss_fn = None
 
             # Optimizer
+            self.optimizer = None
 
             # LR Scheduler
+            self.lr_scheduler = None
 
         elif mode == "test":
             pass
     
     def train(self):
+        self.model.to(self.config.device)
+        
+        # early stopping
+        early_stopping = 0
+        best_metric = None
+        best_model = None
+        
         for epoch in range(1, self.config.epochs+1):
             self.model.train()
-            for batch in self.train_dataloader:
-                self._valid()
-    
+            for batch in tqdm(self.train_dataloader):
+                
+                ## TODO ##
+                # following code is pesudo code
+                # modify the code to fit your task 
+                img = batch["img"]
+                label = batch["label"]
+                
+                self.optimizer.zero_grad()
+                pred = self.model(img)
+                loss = self.loss_fn(pred, label)
+                loss.backward()
+                
+                # caculate metric
+                
+                self.optimizer.step()
+                
+            self._valid()
+            # logging
+            
+            # save model
+            
+            if early_stopping >= 5:
+                break
+            
+            
     def _valid(self):
         self.model.eval()
         with torch.no_grad():

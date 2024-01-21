@@ -10,10 +10,12 @@
 - [ ] csv logging
 ### trainer
 - [ ] logging pesudo code
-- [ ] train pesudo code
+- [x] train pesudo code
 - [ ] validation pesudo code
 - [ ] model save
 - [ ] load model for continual learning
+- [ ] early stopping
+- [ ] metric save
 ### other 
 - [ ] Pytorch lightning
 
