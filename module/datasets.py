@@ -1,6 +1,7 @@
 from typing import Union, List
 
 import numpy as np
+import cv2
 
 from torch.utils.data import Dataset
 
@@ -30,11 +31,25 @@ class CustomDataset(Dataset):
         # Hint :
         # get image by using opencv-python or pillow library
         # return image and label(you can return as tuple or dictionary type)
-        pass
-    
+
+        ## TODO ##
+        # ----- Modify Example Code -----
+        img_path = self.img_paths[index]
+        img = cv2.imread(img_path)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        if self.transforms is not None:
+            img = self.transforms(image=img)["image"]
+        
+        return {
+            "img": img,
+            "label": self.labels[index]
+        }
+        # -------------------------------
+
     def __len__(self):
         # Hint : return labels or img_paths length
-        pass
+        return len(self.img_paths)
 
 
 if __name__ == "__main__":

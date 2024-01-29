@@ -8,7 +8,7 @@ def run(config: Config):
     
     trainer = Trainer(config=config)
     trainer.setup()
-    
+
     trainer.train()
 
         
@@ -23,6 +23,8 @@ if __name__ == "__main__":
     parser.add_argument("--data_path", type=str, default="./data")
     parser.add_argument("--save_dir", type=str, default="./log")
     parser.add_argument("--exp_name", type=str, default=None)
+    # model_name
+    # dataset_name
 
     args = parser.parse_args()
     

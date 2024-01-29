@@ -1,3 +1,4 @@
+import sys
 from glob import glob
 
 from tqdm import tqdm
@@ -5,7 +6,11 @@ from sklearn.model_selection import train_test_split
 import albumentations as A
 from albumentations.pytorch.transforms import ToTensorV2
 import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
+
 
 from base.module.datasets import get_dataset
 from module.models import get_model
@@ -29,6 +34,10 @@ class Trainer:
                 name="tensorboard",
                 log_dir=f"{self.config.log_dir}",    
             )
+
+            ## TODO ##
+            # Hint : get data by using pandas or glob 
+
             
             # Train
             train_transform = A.Compose([
@@ -93,14 +102,20 @@ class Trainer:
         
         # early stopping
         early_stopping = 0
-        best_metric = None
+
+        # metric
+        best_acc = 0
+        best_f1 = 0
+
         best_model = None
         
         for epoch in range(1, self.config.epochs+1):
             self.model.train()
+
             for batch in tqdm(self.train_dataloader):
                 
                 ## TODO ##
+                # ----- Modify Example Code -----
                 # following code is pesudo code
                 # modify the code to fit your task 
                 img = batch["img"]
@@ -111,9 +126,10 @@ class Trainer:
                 loss = self.loss_fn(pred, label)
                 loss.backward()
                 
-                # caculate metric
+                # calculate metric
                 
                 self.optimizer.step()
+                # -------------------------------
                 
             self._valid()
             # logging
@@ -125,10 +141,20 @@ class Trainer:
             
             
     def _valid(self):
+        # metric
+
         self.model.eval()
         with torch.no_grad():
-            for batch in self.val_dataloader:
-                pass
+            for batch in tqdm(self.val_dataloader):
+                img = batch["img"]
+                label = batch["label"]
+
+                pred = self.model(img)
+                loss = self.loss_fn(pred, label)
+
+                # logging
+            
+
         
     
     

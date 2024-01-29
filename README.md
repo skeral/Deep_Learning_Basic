@@ -7,6 +7,7 @@
 - [x] config
 - [x] config param save
 ### log
+- [ ] tensorboard logging
 - [ ] csv logging
 ### trainer
 - [ ] logging pesudo code
