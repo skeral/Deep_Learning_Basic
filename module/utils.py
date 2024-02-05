@@ -19,6 +19,7 @@ class Config:
         self.seed = args.seed
         self.data_path = args.data_path
         self.save_dir = args.save_dir
+        self.mode = args.mode
         
         if args.exp_name is None:
             now = datetime.now()
@@ -29,7 +30,8 @@ class Config:
         self.log_dir = os.path.join(self.save_dir, self.exp_name)
         os.makedirs(self.log_dir, exist_ok=True)
         
-        self._save()
+        if self.mode == "train":
+            self._save()    
         
     def __str__(self):
         attr = vars(self)
