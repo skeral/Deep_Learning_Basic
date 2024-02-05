@@ -12,7 +12,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 
-from base.module.datasets import get_dataset
+from module.datasets import get_dataset
 from module.models import get_model
 from module.utils import Config, seed_everything
 from module.log import get_logger
