@@ -8,6 +8,13 @@ import torch
 
 
 class Config:
+    """
+    This Class is for env variables
+    If mode is train, Config parameter is save in folder which name is self.log_dir
+
+    Args
+    args: parameter made by argparse library
+    """
     def __init__(self, args):
         # self.device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -19,19 +26,19 @@ class Config:
         self.seed = args.seed
         self.data_path = args.data_path
         self.save_dir = args.save_dir
-        self.mode = args.mode
-        
         if args.exp_name is None:
             now = datetime.now()
             self.exp_name = now.strftime("%Y-%m-%d %H:%M:%S")
         else:
             self.exp_name = args.exp_name
+        self.mode = args.mode
+        self.model_name = args.model_name
         
         self.log_dir = os.path.join(self.save_dir, self.exp_name)
-        os.makedirs(self.log_dir, exist_ok=True)
         
         if self.mode == "train":
-            self._save()    
+            os.makedirs(self.log_dir, exist_ok=True)
+            self._save()
         
     def __str__(self):
         attr = vars(self)
