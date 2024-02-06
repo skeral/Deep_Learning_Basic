@@ -1,6 +1,6 @@
 """
 Defines a 'CustomDataset' class, which inherits from PyTorch's 'Dataset' class, intended for image data
-
+ 
 To support image data loading and preprocessing
 """
 
