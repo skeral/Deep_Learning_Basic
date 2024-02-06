@@ -1,4 +1,5 @@
 import sys
+import os
 from glob import glob
 
 from tqdm import tqdm
@@ -21,6 +22,7 @@ class Trainer:
     def __init__(self, config: Config):
         self.config = config
     
+
     def setup(self, mode="train"):
         """
         you need to code how to get data
@@ -97,6 +99,7 @@ class Trainer:
         elif mode == "test":
             pass
     
+
     def train(self):
         self.model.to(self.config.device)
         

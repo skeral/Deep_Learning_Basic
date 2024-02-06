@@ -7,14 +7,19 @@ from torch.utils.data import Dataset
 
 def get_dataset(name: str, **kwargs):
     if name == "custom":
-        return CustomDataset(**kwargs)
+        return CustomImageDataset(**kwargs)
     else:
         raise ValueError("Incorrect Name")
     
 
-class CustomDataset(Dataset):
+class CustomImageDataset(Dataset):
     """
     CustomDataset for Image Data
+
+    Args
+    img_paths: image path list
+    labels: image data label list
+    transforms : transform instance made by albumentations
     """
     def __init__(
             self,
